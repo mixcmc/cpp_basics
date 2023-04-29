@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -O3 -pedantic-errors
+CXXFLAGS = -O3 -pedantic-errors -std=c++20
 SOURCES = $(wildcard *.cpp)
 BINARIES = $(SOURCES:.cpp=)
 
