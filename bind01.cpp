@@ -18,7 +18,7 @@ void print2(const T val, const std::string& msg)
 int main()
 {
 	int i = 6;
-	/* bind will copy its args and cannot accept just "f0" for some reason */
+	/* bind will copy its args */
 	auto f0 = std::bind(&print, i, "f0");
 	auto f1 = std::bind(&print, std::ref(i), std::string("f1"));//i is a reference => changes to i applied to arg 
 	auto f2 = std::bind(&print, std::ref(i), std::placeholders::_1);//need to pass second arg
