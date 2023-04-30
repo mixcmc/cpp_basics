@@ -8,7 +8,9 @@ all: $(BINARIES)
 
 %: %.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
-	
+
+
+.SILENT: run	
 .PHONY: run
 run: $(BINARIES)
 	$(foreach program,$^,echo "=== $(program) ===";./$(program);)
