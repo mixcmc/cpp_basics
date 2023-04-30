@@ -11,7 +11,7 @@ all: $(BINARIES)
 	
 .PHONY: run
 run: $(BINARIES)
-	$(foreach program,$^,./$(program);)
+	$(foreach program,$^,echo "$(program):";./$(program);)
 
 clean:
 	rm -f $(BINARIES)
