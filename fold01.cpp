@@ -20,6 +20,13 @@ auto div2 (T ... t)
 	return (... / t);
 }
 
+template<typename ... T>
+auto avg (T ... t)
+{
+	/* not obvious syntax in sizeof */
+	return (... + t) / sizeof...(t);
+}
+
 int main()
 {
 	/* T is a maximum type, double in this case */
@@ -34,5 +41,6 @@ int main()
 	/* looks like it does 1/2/3/4 but why div does not do 4/3/2/1? */
 	std::cout << div2(1.0,2.0,3.0,4.0) <<std::endl;
 	std::cout << (1.0/2.0/3.0/4.0) << std::endl;
+	std::cout << avg(1.0,2.0,3.0,4.0) <<std::endl;
 	return 0;
 }
