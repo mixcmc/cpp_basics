@@ -42,6 +42,9 @@ auto biased_avg (T ... t)
 	return ((i) + ... + t) / sizeof...(t);
 }
 
+template<typename ... B>
+auto conjunct_all(B ... b) { return (b && ...); }
+
 int main()
 {
 	/* T is a maximum type, double in this case */
@@ -59,5 +62,6 @@ int main()
 	std::cout << "avg=" << avg(1.0,2.0,3.0,4.0) <<std::endl;
 	std::cout << "biased_avg=" << biased_avg(1.0,2.0,3.0,4.0) <<std::endl;
 	std::cout << (2+1.0+2.0+3.0+4.0)/4 <<std::endl;
+	std::cout << "conjunct_all=" <<std::boolalpha << conjunct_all(true, true, false, true) << std::endl;
 	return 0;
 }
