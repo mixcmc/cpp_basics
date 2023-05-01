@@ -27,6 +27,21 @@ auto avg (T ... t)
 	return (... + t) / sizeof...(t);
 }
 
+template<typename ... T>
+auto biased_avg (T ... t)
+{
+	constexpr int i = 2;
+	/* expands like i + t0 + t1 + ... + tn,
+	 *  () are mandatory
+	 *  ... + t + (i)
+	 *  for accepted variants:
+	 *  (pack op ...)
+	 *  (... op pack)
+	 *  (init op ... op pack)
+	 *  (pack op ... op init), ops can be different */
+	return ((i) + ... + t) / sizeof...(t);
+}
+
 int main()
 {
 	/* T is a maximum type, double in this case */
@@ -42,5 +57,7 @@ int main()
 	std::cout << "div2=" << div2(1.0,2.0,3.0,4.0) <<std::endl;
 	std::cout << (1.0/2.0/3.0/4.0) << std::endl;
 	std::cout << "avg=" << avg(1.0,2.0,3.0,4.0) <<std::endl;
+	std::cout << "biased_avg=" << biased_avg(1.0,2.0,3.0,4.0) <<std::endl;
+	std::cout << (2+1.0+2.0+3.0+4.0)/4 <<std::endl;
 	return 0;
 }
