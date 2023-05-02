@@ -22,5 +22,8 @@ int main()
 	std::cout << "Vector conent:\n";
 	std::copy(s.v.begin(), s.v.end(), std::ostream_iterator<int>(std::cout, " "));
 	std::cout << std::endl;
+
+	auto al = {1,2,3,4};
+	std::cout << "al of type " << typeid(al).name() << " of size " << al.size() << std::endl;
 	return 0;
 }
