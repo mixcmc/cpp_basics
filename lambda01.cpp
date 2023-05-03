@@ -48,7 +48,6 @@ int main()
 	/* is there a way to get rid of print as parameter to print? */
 	print(print, "hello ")(print, "from ")(print, "GCC ")(print, __VERSION__)(print, "!\n");
 
-	/* compiles but can't understand how to use it */
 	auto print_ = std::bind(print, print, std::placeholders::_1);
 	/* slightly better but can't get rid of print_ every other call */
 	print_("bind ")(print_, "hello ")("world ")(print_,"from ")(__VERSION__)(print_,"\n");
