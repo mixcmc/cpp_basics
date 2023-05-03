@@ -37,6 +37,15 @@ int main()
 	cout << "prod(l)=" << prod(l) << endl;
 	/* head(tail(tail(tail(list(1, '2', "3"))))) => error because list need at least 1 arg */
 
+	auto out = [](const auto& val, auto&& out) { cout << val; return out; };
+	auto print = [&](auto&& print, auto first, auto ...rest) {
+		out(first, out);
+		if constexpr(sizeof ...(rest) > 0) print(print, rest...);
+		return print;
+	};
+	/* is there a way to get rid of print as parameter to print? */
+	print(print, "hello ")(print, "from ")(print, "GCC ")(print, __VERSION__)(print, "!\n");
+
 	f();
 	f1(5);
 	f1(i);
