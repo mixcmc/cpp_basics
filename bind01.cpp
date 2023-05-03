@@ -15,6 +15,14 @@ void print2(const T val, const std::string& msg)
 	cout << __PRETTY_FUNCTION__ << ": msg: " << msg << ", val(" << typeid(T).name() << ")=" << val << endl;
 }
 
+struct S
+{
+	void do_smth(int a, int b)
+       	{
+		std::cout << __PRETTY_FUNCTION__ << ": a=" << a <<", b=" << b << std::endl;
+	}
+};
+
 int main()
 {
 	int i = 6;
@@ -27,6 +35,8 @@ int main()
 	auto f4 = std::bind(&print2<double>, 2.3, "f3");
 	/* args order can be changed with placeholders */
 	auto f5 = std::bind(&print, std::placeholders::_2, std::placeholders::_1);
+	S s;
+	auto f6 = std::bind(&S::do_smth, &s, 2, 3);
 	
 	f0();
 	i++;
@@ -44,5 +54,7 @@ int main()
 	f4();
 
 	f5("f5", 18);
+
+	f6();
 	return 0;
 }
