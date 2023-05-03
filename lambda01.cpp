@@ -27,6 +27,9 @@ int main()
 	auto prod = [](auto xs) {
 		return xs([](auto ...args){ return (args * ...); });
 	};
+	auto show = [=](auto&& show, auto xs) {
+		xs([=](auto first, auto ...rest) { cout << first <<" "; if constexpr (sizeof...(rest) > 0) show(show, list(rest...)); else cout << endl; });
+	};
 	auto l = list(1,2,3,4,5);
 	auto sum = l([](auto ...args){ return (args + ...); });
 	auto mul = l([](auto ...args){ return (args * ...); });
@@ -37,6 +40,7 @@ int main()
 	cout << "head(tail(list(1,'2',\"3\")))=" << head(tail(list(1, '2', "3"))) << endl;
 	cout << "head(tail(tail(list(1,'2',\"3\"))))=" << head(tail(tail(list(1, '2', "3")))) << endl;
 	cout << "prod(l)=" << prod(l) << endl;
+	show(show, list(1,'2',"3", 0.4, "baba", nullptr));
 	/* head(tail(tail(tail(list(1, '2', "3"))))) => error because list need at least 1 arg */
 
 	auto out = [](const auto& val, auto&& out) { cout << val; return out; };
