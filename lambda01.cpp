@@ -1,6 +1,8 @@
 #include <iostream>
+#include <functional>
 using std::cout;
 using std::endl;
+
 
 int main()
 {
@@ -45,6 +47,11 @@ int main()
 	};
 	/* is there a way to get rid of print as parameter to print? */
 	print(print, "hello ")(print, "from ")(print, "GCC ")(print, __VERSION__)(print, "!\n");
+
+	/* compiles but can't understand how to use it */
+	auto print_ = std::bind(&print, print, std::placeholders::_1);
+	/* error
+	print_("bind ")("hello ");*/
 
 	f();
 	f1(5);
