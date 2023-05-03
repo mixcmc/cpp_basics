@@ -50,8 +50,8 @@ int main()
 
 	/* compiles but can't understand how to use it */
 	auto print_ = std::bind(print, print, std::placeholders::_1);
-	/* slightly better but can't add another () with or without print or print_ */
-	print_("bind ")(print_, "hello ")("\n");
+	/* slightly better but can't get rid of print_ every other call */
+	print_("bind ")(print_, "hello ")("world ")(print_,"from ")(__VERSION__)(print_,"\n");
 
 	f();
 	f1(5);
