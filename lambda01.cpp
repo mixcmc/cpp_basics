@@ -49,9 +49,9 @@ int main()
 	print(print, "hello ")(print, "from ")(print, "GCC ")(print, __VERSION__)(print, "!\n");
 
 	/* compiles but can't understand how to use it */
-	auto print_ = std::bind(&print, print, std::placeholders::_1);
-	/* error
-	print_("bind ")("hello ");*/
+	auto print_ = std::bind(print, print, std::placeholders::_1);
+	/* slightly better but can't add another () with or without print or print_ */
+	print_("bind ")(print_, "hello ")("\n");
 
 	f();
 	f1(5);
