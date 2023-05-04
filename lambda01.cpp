@@ -56,6 +56,19 @@ int main()
 	/* slightly better but can't get rid of print_ every other call */
 	print_("bind ")(print_, "hello ")("world ")(print_,"from ")(__VERSION__)(print_,"\n");
 
+	auto print_2 = [&](auto&& print, auto first, auto ...rest) {
+		out(first, out);
+		if constexpr(sizeof...(rest)>0) print(print, rest...);
+		return std::bind(print, print, std::placeholders::_1);
+	};
+	/* way better but accept only one argument */
+	auto print_2_ = std::bind(print_2, print_2, std::placeholders::_1);
+	print_2_("bind ")("bind ")("works ")("with ")("single ")("argument")("\n");
+	/* prints 'bind first' */
+	print_2_("bind ", "bind ")("first ", "second ")("\n");
+	/* prints all parameters */
+	print(print, "first ", "second ", "third ")(print, "one ", "two ", "three ")(print, "\n");
+
 	f();
 	f1(5);
 	f1(i);
