@@ -20,6 +20,7 @@ all: $(BINARIES)
 .PHONY: run
 run: $(BINARIES)
 	$(foreach program,$^,echo "=== $(program) ===";./$(program);)
+	$(foreach subdir,$(SUBDIRS), $(MAKE) -C $(subdir) run;)
 
 clean:
 	rm -f $(BINARIES)
