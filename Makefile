@@ -3,7 +3,7 @@ CXXFLAGS = -O3 -pedantic-errors -std=c++20
 
 SRCDIR := .
 SUBDIRS := $(wildcard */.)
-EXCLUDE_DIRS := modules
+EXCLUDE_DIRS := #modules
 SUBDIRS := $(filter-out $(addsuffix /.,$(EXCLUDE_DIRS)), $(SUBDIRS))
 
 BINARIES := $(patsubst %.cpp,%,$(wildcard $(SRCDIR)/*.cpp))
