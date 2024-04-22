@@ -11,7 +11,7 @@ void print_val(std::future<int> &v)
 	const auto end{std::chrono::steady_clock::now()};
 	const std::chrono::duration<double> dur{end - start};
 	std::cout << "Got " << val << "\n";
-	std::cout << dur << std::endl;
+	std::cout << dur.count() << std::endl;
 }
 
 int main()
